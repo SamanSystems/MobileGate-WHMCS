@@ -27,7 +27,7 @@ function omidtak_zpmg_link($params)
 	if($_POST['do'] == 'pay')
 	{
 		$amount = strtok($params['amount'], '.');				
-		$amount = ($params['Currencies'] == 'Toman') ? $amount : $amount * 10;
+		$amount = ($params['Currencies'] == 'Toman') ? $amount : $amount / 10;
 		$callback = $params['systemurl'].'/modules/gateways/callback/omidtak_zpmg.php?invoiceid='.$invoiceid.'&amount='.$params['amount'].'&amount2='.$amount;
 		$client = new SoapClient('https://de.zarinpal.com/pg/services/WebGate/wsdl', array('encoding' => 'UTF-8')); 
 		
@@ -51,7 +51,7 @@ function omidtak_zpmg_link($params)
 			$message .= 'با تلفن همراه خود شماره گیری نمایید.</br>';
 			$message .= 'سیستم بصورت خودکار تراکنش شما را چک خواهد کرد و درصورت پرداخت به صفحه تحویل محصول هدایت خواهید شد .</br><a href="'.$callback.'&do=check"> چک کردن پرداخت شما </a>';		
 			$message .= '<div id=result></div>
-			<script type="text/javascript" src="http://jqueryjs.googlecode.com/files/jquery-1.2.6.min.js"></script>
+                        <script type="text/javascript" src="http://jqueryjs.googlecode.com/files/jquery-1.2.6.min.js"></script>
 			<script type=text/javascript>
 				setInterval(function()
 				{ 
@@ -111,6 +111,6 @@ function error_zp($err)
 			case '-54' : $msg = "درخواست مورد نظر آرشيو شده."; break; 
 			case '-101' : $msg = "تراكنش انجام شده است. PaymentVerification عمليات پرداخت موفق بوده و قبلا"; break; 			
 	}
-	return 'خطا (' . $ResCode . ') : ' . $msg;
+	return 'خطا (' . $err . ') : ' . $msg;
 }
 ?>
