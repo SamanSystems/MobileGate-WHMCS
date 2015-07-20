@@ -44,7 +44,7 @@ function omidtak_zpmg_link($params)
 		{	
 			$time = ($params['Time'] > 1) ? $params['Time'] : 10;	
 			$order_id = intval($result->Authority);
-			$ussd = '*770*97*2*'.$order_id.'#';
+			$ussd = '*720*97*2*'.$order_id.'#';
 			$message = '<img src="https://chart.googleapis.com/chart?chs=200x200&cht=qr&chl=tel:%2A770%2A97%2A2%2A'.$order_id.'%23&choe=UTF-8&chld=Q|0" title="'.$ussd.'" /></br>';
 			$message .= 'کاربر گرامی برای پرداخت کافیست کد زیر را </br>';
 			$message .= $order_id.'#*2*97*770*</br>';
