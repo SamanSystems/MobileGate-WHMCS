@@ -8,10 +8,17 @@
  * Author Email: info[at]omidtak[dot]ir
  */
 
-include('../../../dbconnect.php');
-include('../../../includes/functions.php');
-include('../../../includes/gatewayfunctions.php');
-include('../../../includes/invoicefunctions.php');
+if(file_exists('../../../init.php'))
+{
+require( '../../../init.php' );
+
+}else{
+
+require("../../../dbconnect.php");
+}
+include("../../../includes/functions.php");
+include("../../../includes/gatewayfunctions.php");
+include("../../../includes/invoicefunctions.php");
 	
 $gatewaymodule = 'omidtak_zpmg'; 
 $GATEWAY = getGatewayVariables($gatewaymodule);
